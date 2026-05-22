@@ -57,7 +57,7 @@ respons wabah. Penelitian ini mengusulkan \emph{HantaBERT}, sebuah model
 multi-task hasil \emph{fine-tuning} terhadap model fondasi genom
 \textsc{DNABERT-2} pada 8.822 sekuens hantavirus dari NCBI GenBank.
 Arsitektur yang diusulkan menempatkan sebuah \emph{bottleneck} bersama di
-atas \emph{encoder} DNABERT-2, kemudian mempercabangkan tiga kepala
+atas \emph{encoder} DNABERT-2, then mempercabangkan tiga kepala
 klasifikasi independen untuk tugas prediksi spesies (23 kelas), inang
 (3 kelas), dan asal geografis (7 benua). Pelatihan dilakukan dengan
 \emph{loss} berbobot lintas-tugas $L = 1{,}0\,L_{\text{sp}} + 0{,}5\,L_{\text{host}}
@@ -163,12 +163,12 @@ Kontribusi penelitian ini diringkas sebagai berikut:
 Kumpulan data dasar disusun dari pengajuan hantavirus pada NCBI GenBank
 dan diolah lewat pipa internal. Setiap baris memuat sekuens nukleotida,
 label segmen ($S$/$M$/$L$), label spesies, label inang
-(\emph{Rodent}/\emph{Human}/\emph{Others}/\emph{Unknown}), dan koordinat
+(\emph{Rodent}/\emph{Human}/\emph{Others}/\emph{Unknown}), and koordinat
 geografis bila tersedia. Sekuens disimpan dalam representasi DNA
 ($T$, bukan $U$) sehingga dapat langsung diberikan kepada \emph{tokenizer}
 DNABERT-2.
 
-Kolom \emph{geo\_label\_broad} sumber mengandung kekeliruan masif dan
+Kolom \emph{geo\_label\_broad} sumber menunjukkan tingkat ketidaklengkapan yang luas dan
 diperbaiki melalui \emph{reverse geocoding} batch atas pasangan
 latitude/longitude. Hasil pemetaan kode negara ke benua menggunakan tabel
 \texttt{CC\_TO\_CONTINENT} memberi tujuh kelas (Amerika, Eropa, Asia,
@@ -372,7 +372,7 @@ $80{,}5\%$ (geografi). Tugas spesies paling cepat menuju saturasi, sesuai
 dengan supervisi terbersih dan jumlah kelas yang membuat sinyal
 diskriminatif kaya. Kurva pada Gambar~\ref{fig:curves} menunjukkan
 selisih \emph{loss} pelatihan-validasi yang mengecil seiring epoch
-tanpa tanda \emph{overfitting} jelas.
+tanpa tanda kelebihan pas (*overfitting*) jelas.
 
 \begin{table}[t]
 \centering
@@ -433,7 +433,7 @@ Geografi (7) & \textbf{80{,}5\%} \\
 
 Gambar~\ref{fig:cm-species} menampilkan \emph{confusion matrix} tugas
 spesies; \emph{lineage} dominan (mis. \emph{O.\ seoulense},
-\emph{O.\ puumalaense}) terprediksi nyaris sempurna, dan kesalahan
+\emph{O.\ puumalaense}) terprediksi dengan akurasi yang tinggi, dan kesalahan
 terkonsentrasi pada kelas \emph{Other} yang merupakan gabungan lineage
 langka---sebuah konsekuensi langsung dari ambang $<\!30$ sampel.
 
@@ -451,7 +451,7 @@ non-rodensia (kelelawar, tikus celurut). Pada tugas geografi,
 kesalahan terkonsentrasi pada lineage \emph{kosmopolitan}: Seoul virus
 yang dibawa \emph{Rattus norvegicus} ditemukan di semua benua mengikuti
 distribusi tikus inangnya, sehingga label benua tidak selalu deterministik
-dari sekuens; akurasi $80{,}5\%$ kemungkinan adalah \emph{upper bound}
+dari sekuens; akurasi $80{,}5\%$ kemungkinan adalah batasan atas
 dekat dengan ambiguitas inherent label tersebut.
 
 \subsection{Visualisasi UMAP dan Substruktur Filogenetik}
@@ -519,7 +519,7 @@ sekuens hantavirus baru: klasifikasi multi-atribut + representasi
 visualisasi-siap dengan satu model. Sebagai pelengkap kontribusi
 \emph{engineering}, model di-\emph{deploy} di balik antarmuka web
 publik (FastAPI + frontend statis HTML/JS) yang menerima sekuens
-DNA/RNA atau FASTA dan mengembalikan prediksi probabilistik per tugas
+DNA/RNA atau berkas FASTA dan mengembalikan prediksi probabilistik per tugas
 beserta peta geografis interaktif.
 
 Arah pekerjaan lanjutan: (i) memperluas konteks melampaui 512 token
