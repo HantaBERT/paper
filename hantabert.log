@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  22 MAY 2026 17:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.28)  24 MAY 2026 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -797,7 +797,8 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 25.
 ef
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count349
-) (./hantabert.aux)
+)
+No file hantabert.aux.
 \openout1 = `hantabert.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
@@ -818,7 +819,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
-
 -- Lines per column: 56 (exact).
 (/usr/local/texlive/2025basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -846,15 +846,13 @@ e
 ))
 \c@lstlisting=\count356
 Package hyperref Info: Link coloring ON on input line 27.
- (./hantabert.out) (./hantabert.out)
 \@outlinefile=\write4
 \openout4 = `hantabert.out'.
 
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 50.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
 
-
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
@@ -875,6 +873,29 @@ Underfull \hbox (badness 5490) in paragraph at lines 51--72
  []
 
 
+LaTeX Warning: Citation `Ji2021DNABERT' on page 1 undefined on input line 107.
+
+
+LaTeX Warning: Citation `Devlin2019BERT' on page 1 undefined on input line 108.
+
+
+
+LaTeX Warning: Citation `Zhou2023DNABERT2' on page 1 undefined on input line 10
+9.
+
+
+LaTeX Warning: Citation `Zhou2024DNABERTS' on page 1 undefined on input line 11
+1.
+
+
+LaTeX Warning: Citation `Caruana1997MTL' on page 1 undefined on input line 114.
+
+
+
+LaTeX Warning: Citation `McInnes2018UMAP' on page 1 undefined on input line 114
+.
+
+
 
 
 Underfull \hbox (badness 2318) in paragraph at lines 122--126
@@ -889,6 +910,10 @@ usr/local/texlive/2025basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
+
+LaTeX Warning: Reference `tab:dataset' on page 2 undefined on input line 179.
+
+
 Underfull \hbox (badness 4193) in paragraph at lines 171--181
 []\T1/ptm/m/n/10 Kolom \T1/ptm/m/it/10 geo_label_broad \T1/ptm/m/n/10 sum-ber m
 e-nun-jukkan tingkat
@@ -907,6 +932,12 @@ Underfull \hbox (badness 3482) in paragraph at lines 171--181
  []
 
 
+LaTeX Warning: Reference `fig:flow' on page 2 undefined on input line 205.
+
+
+
+
+LaTeX Warning: Reference `tab:hyper' on page 2 undefined on input line 286.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 319--328
@@ -968,56 +999,94 @@ Underfull \hbox (badness 1609) in paragraph at lines 319--328
 
 
 [2]
-<images/website-interface.png, id=136, 1461.20906pt x 1203.7472pt>
+
+LaTeX Warning: Reference `fig:webui' on page 3 undefined on input line 334.
+
+<images/website-interface.png, id=54, 1461.20906pt x 1203.7472pt>
 File: images/website-interface.png Graphic file (type png)
 <use images/website-interface.png>
 Package pdftex.def Info: images/website-interface.png  used on input line 340.
 (pdftex.def)             Requested size: 252.0pt x 207.5915pt.
 
-Underfull \hbox (badness 3460) in paragraph at lines 352--361
+Underfull \hbox (badness 3460) in paragraph at lines 352--363
 \T1/ptm/m/n/10 / / github . com / HantaBERT$[][], ter-diri dari tiga repos-i-to
 ri: (i)
  []
 
 
-Underfull \hbox (badness 5787) in paragraph at lines 352--361
+Underfull \hbox (badness 5787) in paragraph at lines 352--363
 \T1/ptm/m/n/10 --- layanan in-fer-ensi FastAPI be-serta \T1/ptm/m/it/10 Dock-er
 -file\T1/ptm/m/n/10 ; (iii)
  []
 
 
 
-<images/training_curves.png, id=141, 505.89pt x 505.89pt>
+
+LaTeX Warning: Reference `tab:hist' on page 3 undefined on input line 370.
+
+
+LaTeX Warning: Reference `fig:curves' on page 3 undefined on input line 375.
+
+<images/training_curves.png, id=59, 505.89pt x 505.89pt>
 File: images/training_curves.png Graphic file (type png)
 <use images/training_curves.png>
-Package pdftex.def Info: images/training_curves.png  used on input line 399.
+Package pdftex.def Info: images/training_curves.png  used on input line 401.
 (pdftex.def)             Requested size: 252.0pt x 252.00262pt.
+
+LaTeX Warning: Reference `tab:test' on page 3 undefined on input line 409.
+
 
 
 [3 <./images/website-interface.png> <./images/training_curves.png>]
-<images/cm_species.png, id=155, 1662.21pt x 1517.67pt>
+
+LaTeX Warning: Reference `fig:cm-species' on page 4 undefined on input line 436
+.
+
+<images/cm_species.png, id=75, 1662.21pt x 1517.67pt>
 File: images/cm_species.png Graphic file (type png)
 <use images/cm_species.png>
-Package pdftex.def Info: images/cm_species.png  used on input line 442.
+Package pdftex.def Info: images/cm_species.png  used on input line 444.
 (pdftex.def)             Requested size: 252.0pt x 230.07224pt.
-<images/umap_all_species.png, id=157, 1011.78pt x 722.7pt>
+
+LaTeX Warning: Reference `fig:umap-all' on page 4 undefined on input line 465.
+
+
+
+<images/umap_all_species.png, id=76, 1011.78pt x 722.7pt>
 File: images/umap_all_species.png Graphic file (type png)
 <use images/umap_all_species.png>
-Package pdftex.def Info: images/umap_all_species.png  used on input line 469.
+Package pdftex.def Info: images/umap_all_species.png  used on input line 471.
 (pdftex.def)             Requested size: 252.0pt x 180.00188pt.
 
+LaTeX Warning: Reference `fig:umap-seoul' on page 4 undefined on input line 476
+.
 
-<images/umap_Orthohantavirus_seoulense.png, id=160, 505.89pt x 1084.05pt>
+
+LaTeX Warning: Reference `fig:umap-puumala' on page 4 undefined on input line 4
+76.
+
+
+Underfull \hbox (badness 3668) in paragraph at lines 476--488
+[]\T1/ptm/m/n/10 Plot intra-spesies (Gam-bar [] dan []) men-gungkap
+ []
+
+
+Underfull \hbox (badness 1831) in paragraph at lines 476--488
+\T1/ptm/m/n/10 fenom-ena menarik: \T1/ptm/m/it/10 em-bed-ding \T1/ptm/m/n/10 me
+n-gelom-pokkan sekuens
+ []
+
+<images/umap_Orthohantavirus_seoulense.png, id=77, 505.89pt x 1084.05pt>
 File: images/umap_Orthohantavirus_seoulense.png Graphic file (type png)
 <use images/umap_Orthohantavirus_seoulense.png>
 Package pdftex.def Info: images/umap_Orthohantavirus_seoulense.png  used on inp
-ut line 489.
+ut line 491.
 (pdftex.def)             Requested size: 188.16443pt x 403.2095pt.
-<images/umap_Orthohantavirus_puumalaense.png, id=161, 505.89pt x 1084.05pt>
+<images/umap_Orthohantavirus_puumalaense.png, id=78, 505.89pt x 1084.05pt>
 File: images/umap_Orthohantavirus_puumalaense.png Graphic file (type png)
 <use images/umap_Orthohantavirus_puumalaense.png>
 Package pdftex.def Info: images/umap_Orthohantavirus_puumalaense.png  used on i
-nput line 497.
+nput line 499.
 (pdftex.def)             Requested size: 188.16443pt x 403.2095pt.
 
 
@@ -1042,14 +1111,27 @@ _puumalaense.png>] (./hantabert.aux)
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
-Package rerunfilecheck Info: File `hantabert.out' has not changed.
-(rerunfilecheck)             Checksum: 0807C8C344735B26F76099BDA1BDE0DE;3140.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `hantabert.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `hantabert.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  0807C8C344735B26F76099BDA1BDE0DE;3140.
  ) 
 Here is how much of TeX's memory you used:
- 25100 strings out of 469157
- 467246 string characters out of 5461436
- 881338 words of memory out of 5000000
- 53126 multiletter control sequences out of 15000+600000
+ 25072 strings out of 469157
+ 466828 string characters out of 5461436
+ 879568 words of memory out of 5000000
+ 53104 multiletter control sequences out of 15000+600000
  764046 words of font info for 190 fonts, out of 8000000 for 9000
  374 hyphenation exceptions out of 8191
  84i,17n,87p,545b,786s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1077,10 +1159,10 @@ e/2025basic/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 sic/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2025basic/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025basic/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on hantabert.pdf (5 pages, 964359 bytes).
+Output written on hantabert.pdf (5 pages, 962725 bytes).
 PDF statistics:
- 292 PDF objects out of 1000 (max. 8388607)
- 224 compressed objects within 3 object streams
+ 218 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
  46 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 
