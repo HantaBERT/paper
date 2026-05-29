@@ -1,57 +1,60 @@
-# HantaBERT: Klasifikasi Multi-Task Hantavirus dengan Fine-Tuning DNABERT-2
+# HantaBERT: Multi-Task Hantavirus Classification with DNABERT-2 Fine-Tuning
 
-Makalah tugas besar (Bahasa Indonesia, dua kolom, 5 halaman) yang melaporkan pengembangan **HantaBERT**, sebuah model *multi-task* hasil *fine-tuning* DNABERT-2 untuk klasifikasi sekuens hantavirus pada tiga tugas sekaligus: spesies, inang, dan asal geografis. Makalah ini disusun sebagai Tugas Besar mata kuliah Komputasi Domain Spesifik di Sekolah Teknik Elektro dan Informatika ITB.
+A term-project paper (two-column, 5 pages, available in both English and Indonesian) reporting the development of **HantaBERT**, a *multi-task* model obtained by *fine-tuning* DNABERT-2 to classify hantavirus sequences across three tasks at once: species, host, and geographic origin. The paper was written for the Domain-Specific Computing course at the School of Electrical Engineering and Informatics, ITB.
 
-![Preview halaman pertama makalah HantaBERT](hantabert.png)
+![Preview of the first page of the HantaBERT paper](hantabert-en.png)
 
-## Penulis
+## Authors
 
-| Nama | NIM | Surel |
+| Name | Student ID | Email |
 |------|-----|-------|
 | Muhammad Faiz Atharrahman | 18222063 | m@faiz.at |
 | Muhammad Rafi Dhiyaulhaq | 18222069 | rafidhiyaulh@gmail.com |
 | Lydia Gracia | 18222035 | ly.gracies@gmail.com |
 
-Penulis diurutkan secara alfabetis berdasarkan nama belakang.
+Authors are listed alphabetically by last name.
 
-## Ringkasan
+## Summary
 
-Hantavirus (genus *Orthohantavirus*) adalah virus RNA untai negatif tersegmentasi yang menyebabkan demam berdarah disertai sindrom renal (HFRS) di Eurasia dan sindrom kardiopulmoner (HCPS) di Amerika, dengan tingkat mortalitas sampai sekitar 40 persen pada kasus HCPS. Identifikasi cepat spesies, inang reservoir, dan kemungkinan asal geografis dari sebuah sekuens nukleotida sangat dibutuhkan untuk surveilans, tetapi alur kerja berbasis BLAST atau filogeni klasik relatif lambat dan tidak menyatu lintas atribut.
+Hantaviruses (genus *Orthohantavirus*) are segmented negative-sense single-stranded RNA viruses that cause hemorrhagic fever with renal syndrome (HFRS) in Eurasia and cardiopulmonary syndrome (HCPS) in the Americas, with mortality reaching around 40 percent in HCPS cases. Rapid identification of the species, reservoir host, and likely geographic origin of a nucleotide sequence is essential for surveillance, but BLAST-based or classical phylogeny workflows are relatively slow and do not integrate across attributes.
 
-HantaBERT menjawab kebutuhan tersebut dengan satu *forward pass* yang mengeluarkan probabilitas untuk tiga tugas sekaligus. Arsitekturnya membungkus DNABERT-2 (117 juta parameter) dengan *bottleneck* berdimensi 768 yang dipakai bersama, lalu mencabangkan tiga kepala klasifikasi independen. Pelatihan memakai *loss* gabungan berbobot dengan kelas-kelas yang di-*balance*, AMP fp16, *gradient accumulation*, dan *learning rate* diferensial antara encoder dan bagian khusus tugas.
+HantaBERT addresses this need with a single *forward pass* that emits probabilities for all three tasks at once. Its architecture wraps DNABERT-2 (117 million parameters) with a shared 768-dimensional *bottleneck*, then branches into three independent classification heads. Training uses a weighted combined *loss* with *balanced* classes, AMP fp16, *gradient accumulation*, and a differential *learning rate* between the encoder and the task-specific parts.
 
-## Hasil utama
+## Key results
 
-- **Akurasi pada set uji yang terpisah**: 96,7 persen untuk spesies (23 *lineage*), 91,4 persen untuk inang (Rodent, Human, Others), dan 80,5 persen untuk asal geografis (7 wilayah).
-- **Struktur embedding**: proyeksi UMAP atas 8.822 sekuens menampakkan klaster per *lineage* yang rapi disertai substruktur per segmen genom (S, M, L) tanpa pengawasan eksplisit terhadap segmen.
-- **Analisis biologis**: pemisahan klaster S/M/L konsisten dengan perbedaan tekanan selektif (N protein konservatif pada S, *positive selection* antigenik pada Gn/Gc di M, motif aktif RdRp pada L).
+- **Accuracy on a held-out test set**: 96.7 percent for species (23 *lineages*), 91.4 percent for host (Rodent, Human, Others), and 80.5 percent for geographic origin (7 regions).
+- **Embedding structure**: a UMAP projection of 8,822 sequences reveals clean per-*lineage* clusters together with substructure per genome segment (S, M, L) without any explicit supervision of the segment.
+- **Biological analysis**: the S/M/L cluster separation is consistent with differences in selective pressure (conserved N protein on S, antigenic *positive selection* on Gn/Gc in M, active RdRp motifs on L).
 
-## Struktur makalah
+## Paper structure
 
-1. **Pendahuluan** dengan empat subbab: konsep biologi hantavirus, metode komputasi terkait, rumusan pertanyaan penelitian (RQ1 sampai RQ3), dan kontribusi.
-2. **Metode**: dataset dan pra-pemrosesan, arsitektur HantaBERT lengkap dengan diagram alir TikZ, fungsi *loss* multi-task, strategi pelatihan, antarmuka web untuk inferensi, serta ketersediaan kode dan data.
-3. **Hasil dan Diskusi**: progres pelatihan, evaluasi set uji, analisis kesalahan dan konteks biologis, visualisasi UMAP serta substruktur filogenetik.
-4. **Kesimpulan** yang menjawab ketiga RQ ditambah arah pekerjaan lanjutan.
-5. **Daftar Pustaka** dengan 10 referensi.
+1. **Introduction** with four subsections: hantavirus biology concepts, related computational methods, research questions (RQ1 through RQ3), and contributions.
+2. **Methods**: dataset and preprocessing, the full HantaBERT architecture with a TikZ flow diagram, the multi-task *loss* function, the training strategy, the web interface for inference, and code and data availability.
+3. **Results and Discussion**: training progress, test-set evaluation, error analysis and biological context, UMAP visualization, and phylogenetic substructure.
+4. **Conclusion** answering all three RQs plus directions for future work.
+5. **References** with 10 entries.
 
-## Sistem yang dirilis
+## Released system
 
-Selain model, dirilis pula antarmuka web publik. Sisi *backend* (`HantaBERT-API`) memakai FastAPI plus Uvicorn yang dikemas Docker dan di-*deploy* di `hantabert-api.faizath.com`. Sisi *frontend* (`HantaBERT-Web`) berupa berkas statis HTML, CSS, dan JavaScript murni dengan peta dunia interaktif memakai D3 plus TopoJSON. Antarmuka menerima sekuens DNA atau RNA mentah maupun berkas FASTA, mengonversi U menjadi T otomatis, dan menampilkan *top-N* prediksi probabilistik per tugas.
+Beyond the model, a public web interface is also released. The *backend* (`HantaBERT-API`) uses FastAPI plus Uvicorn, packaged with Docker and *deployed* at `hantabert-api.faizath.com`. The *frontend* (`HantaBERT-Web`) is a set of pure static HTML, CSS, and JavaScript files with an interactive world map using D3 plus TopoJSON. The interface accepts raw DNA or RNA sequences or FASTA files, converts U to T automatically, and displays the *top-N* probabilistic predictions per task.
 
-Repositori sumber kode (organisasi GitHub `HantaBERT`):
+Source code repositories (GitHub organization `HantaBERT`):
 
-- `HantaBERT` untuk kode model, *training*, dan evaluasi.
-- `HantaBERT-API` untuk layanan inferensi.
-- `HantaBERT-Web` untuk *frontend* statis.
+- `HantaBERT` for the model, *training*, and evaluation code.
+- `HantaBERT-API` for the inference service.
+- `HantaBERT-Web` for the static *frontend*.
 
-## Struktur direktori
+## Directory structure
 
 ```
 paper/
-├── hantabert.tex            sumber LaTeX makalah (kelas conference, dua kolom)
-├── hantabert.pdf            keluaran kompilasi (5 halaman)
-├── hantabert.png            tangkapan layar halaman pertama (dipakai di README)
-└── images/                  semua gambar yang dirujuk oleh hantabert.tex
+├── hantabert-en.tex         English LaTeX source (conference class, two-column)
+├── hantabert-en.pdf         compiled English output (5 pages)
+├── hantabert-en.png         first-page screenshot, English (used in README)
+├── hantabert-id.tex         Indonesian LaTeX source
+├── hantabert-id.pdf         compiled Indonesian output (5 pages)
+├── hantabert-id.png         first-page screenshot, Indonesian
+└── images/                  all figures referenced by the .tex sources
     ├── training_curves.png
     ├── cm_species.png
     ├── umap_all_species.png
@@ -60,18 +63,18 @@ paper/
     └── website-interface.png
 ```
 
-## Membangun ulang PDF
+## Rebuilding the PDF
 
-Prasyarat: distribusi TeX Live dengan paket `texlive-publishers` (menyediakan `IEEEtran.cls`).
+Prerequisite: a TeX Live distribution with the `texlive-publishers` package (which provides `IEEEtran.cls`).
 
 ```bash
 cd paper
-pdflatex -interaction=nonstopmode hantabert.tex
-pdflatex -interaction=nonstopmode hantabert.tex
+pdflatex -interaction=nonstopmode hantabert-en.tex
+pdflatex -interaction=nonstopmode hantabert-en.tex
 ```
 
-Jalankan `pdflatex` sebanyak dua kali agar referensi silang (`\ref`, `\label`, `\cite`) stabil. Makalah memakai blok `\begin{thebibliography}{99}` inline sehingga tidak perlu langkah BibTeX terpisah. Semua gambar dimuat dari direktori `images/` melalui `\graphicspath{{images/}}` di pembukaan.
+Run `pdflatex` twice so that cross-references (`\ref`, `\label`, `\cite`) stabilize. The paper uses an inline `\begin{thebibliography}{99}` block, so no separate BibTeX step is needed. All figures are loaded from the `images/` directory via `\graphicspath{{images/}}` in the preamble. Substitute `hantabert-id.tex` for the Indonesian version.
 
-## Lisensi dan penggunaan
+## License and use
 
-Makalah dan figurnya disusun untuk keperluan akademik mata kuliah. Kode HantaBERT, HantaBERT-API, dan HantaBERT-Web dirilis terbuka di GitHub di bawah lisensi masing-masing repositori untuk mendukung reproduksi dan eksperimen lanjut.
+The paper and its figures were prepared for the academic purposes of the course. The HantaBERT, HantaBERT-API, and HantaBERT-Web code is released openly on GitHub under each repository's respective license to support reproduction and further experimentation.

@@ -51,8 +51,8 @@ Institut Teknologi Bandung \\[2pt]
 \begin{abstract}
 Hantavirus merupakan kelompok virus RNA zoonotik yang ditularkan terutama
 oleh rodensia dan mampu menyebabkan demam berdarah berat pada manusia.
-Klasifikasi cepat suatu sekuens baru---meliputi spesies virus, kemungkinan
-inang reservoir, dan asal geografisnya---merupakan langkah krusial dalam
+Klasifikasi cepat suatu sekuens baru (meliputi spesies virus, kemungkinan
+inang reservoir, dan asal geografisnya) merupakan langkah krusial dalam
 respons wabah. Penelitian ini mengusulkan \emph{HantaBERT}, sebuah model
 multi-task hasil \emph{fine-tuning} terhadap model fondasi genom
 \textsc{DNABERT-2} pada 8.822 sekuens hantavirus dari NCBI GenBank.
@@ -257,9 +257,9 @@ untuk meredam interferensi gradien antar-tugas.
 \draw[arrow] (bot)  -- (hsp);
 \draw[arrow] (bot)  -- (hho);
 \draw[arrow] (bot)  -- (hge);
-\draw[arrow] (hsp)  |- (loss);
-\draw[arrow] (hho)  -- (loss);
-\draw[arrow] (hge)  |- (loss);
+\draw[arrow] (hsp.south) -- (loss.north);
+\draw[arrow] (hho.south) -- (loss.north);
+\draw[arrow] (hge.south) -- (loss.north);
 \end{tikzpicture}
 \caption{Bagan alir HantaBERT. Komponen biru-tua dilatih dengan
 \emph{learning rate} encoder ($3\!\times\!10^{-5}$); komponen biru muda
@@ -330,7 +330,7 @@ Pengguna dapat menempel sekuens DNA/RNA mentah atau mengunggah berkas
 FASTA; basa $U$ pada masukan RNA dikonversi otomatis ke $T$ sebelum
 tokenisasi BPE, dan sistem menampilkan peringatan ketika sekuens
 melampaui 512 token sehingga ter-truncate. Jumlah hasil \emph{top-N}
-(1--23) dapat diatur per tugas, lengkap dengan \emph{confidence score}
+(1 sampai 23) dapat diatur per tugas, lengkap dengan \emph{confidence score}
 yang dapat diperluas. Gambar~\ref{fig:webui} menampilkan keluaran
 sistem untuk sekuens uji 224 bp yang dijalankan langsung pada
 antarmuka.
@@ -351,10 +351,10 @@ antarmuka.
 
 Seluruh artefak dirilis terbuka di organisasi GitHub
 \url{https://github.com/HantaBERT}, terdiri dari tiga repositori:
-(i) \texttt{HantaBERT} --- kode \emph{preprocess}, \emph{train},
+(i) \texttt{HantaBERT}: kode \emph{preprocess}, \emph{train},
 \emph{evaluate}, \emph{visualize}, hiperparameter, dan \emph{checkpoint}
-model; (ii) \texttt{HantaBERT-API} --- layanan inferensi FastAPI
-beserta \emph{Dockerfile}; (iii) \texttt{HantaBERT-Web} --- berkas
+model; (ii) \texttt{HantaBERT-API}: layanan inferensi FastAPI
+beserta \emph{Dockerfile}; (iii) \texttt{HantaBERT-Web}: berkas
 \emph{frontend} statis. Setiap repositori menyertakan
 \texttt{requirements.txt}/\texttt{README} berisi versi paket yang teruji
 serta panduan reproduksi tahap demi tahap. Selain itu, tautan rekaman video
@@ -410,8 +410,8 @@ Tabel~\ref{tab:test} merangkum akurasi set uji untuk dua jalur evaluasi:
 kepala neural pasca-pelatihan dan \emph{baseline} SVM-RBF
 ($C\!=\!10$, kelas \emph{balanced}) atas \emph{embedding bottleneck}
 yang sudah dibekukan dan distandarisasi. Tujuan baseline ini adalah
-mengukur kualitas \emph{embedding} secara terisolasi---bukan untuk
-mengalahkan kepala neural---dan menjawab \textbf{RQ2}: jika SVM-RBF
+mengukur kualitas \emph{embedding} secara terisolasi (bukan untuk
+mengalahkan kepala neural) dan menjawab \textbf{RQ2}: jika SVM-RBF
 sederhana dapat mencapai akurasi tinggi atas $\mathbf{z}$, berarti
 \emph{bottleneck} memang telah memetakan sekuens ke ruang yang
 kelas-kelasnya terpisah secara non-linier.
@@ -437,7 +437,7 @@ Gambar~\ref{fig:cm-species} menampilkan \emph{confusion matrix} tugas
 spesies; \emph{lineage} dominan (mis. \emph{O.\ seoulense},
 \emph{O.\ puumalaense}) terprediksi dengan akurasi yang tinggi, dan kesalahan
 terkonsentrasi pada kelas \emph{Other} yang merupakan gabungan lineage
-langka---sebuah konsekuensi langsung dari ambang $<\!30$ sampel.
+langka, sebuah konsekuensi langsung dari ambang $<\!30$ sampel.
 
 \begin{figure}[t]
 \centering
@@ -463,7 +463,7 @@ Untuk menjawab \textbf{RQ2} dan \textbf{RQ3}, UMAP
 \emph{cosine}) diterapkan pada \emph{embedding bottleneck} seluruh
 sekuens; varian $n_{\text{neighbors}}{=}15$, $\text{min\_dist}{=}0{,}05$
 dipakai untuk plot intra-spesies. Gambar~\ref{fig:umap-all} menunjukkan
-\emph{embedding} membentuk klaster terpisah per \emph{lineage}---hasil yang
+\emph{embedding} membentuk klaster terpisah per \emph{lineage}, hasil yang
 tidak ter-supervisi secara eksplisit oleh objektif \emph{clustering}.
 
 \begin{figure}[t]
@@ -478,7 +478,7 @@ mengungkap fenomena menarik: \emph{embedding} mengelompokkan sekuens
 berdasarkan \textbf{segmen genom} ($S$/$M$/$L$) meskipun segmen tidak
 pernah menjadi target supervisi. Hal ini konsisten dengan biologi
 hantavirus: ketiga segmen mengkodekan protein dengan tekanan selektif dan
-kandungan nukleotida yang berbeda---N (segmen S) sangat \emph{conserved},
+kandungan nukleotida yang berbeda: N (segmen S) sangat \emph{conserved},
 Gn/Gc (segmen M) mengalami \emph{positive selection} pada situs antigenik
 selubung, dan RdRp (segmen L) mempertahankan motif aktif polimerase.
 Perbedaan komposisi \emph{di-} dan \emph{tri-nucleotide} ini terdeteksi
@@ -512,7 +512,7 @@ geografis sekuens hantavirus dalam satu \emph{forward pass}. Skema
 \emph{bottleneck} bersama, \emph{loss} multi-task berbobot, dan
 strategi pelatihan ramah memori (AMP fp16, \emph{grad accum}, LR
 diferensial) menghasilkan akurasi 96{,}7\%/91{,}4\%/80{,}5\% pada set uji
-terpisah---menjawab \textbf{RQ1} secara afirmatif. \emph{Embedding}
+terpisah, menjawab \textbf{RQ1} secara afirmatif. \emph{Embedding}
 768-d yang muncul dari pelatihan tidak hanya membentuk klaster lineage
 (\textbf{RQ2}) tetapi juga substruktur per segmen genom ($S$/$M$/$L$)
 yang konsisten dengan biologi virus (\textbf{RQ3}). Secara objektif,
@@ -549,16 +549,16 @@ models,'' \emph{arXiv preprint} arXiv:2402.08777, 2024.
 Y. Ji, Z. Zhou, H. Liu, dan R. V. Davuluri,
 ``DNABERT: pre-trained bidirectional encoder representations from
 transformers model for DNA-language in genome,''
-\emph{Bioinformatics}, vol. 37, no. 15, hlm. 2112--2120, 2021.
+\emph{Bioinformatics}, vol. 37, no. 15, hlm. 2112-2120, 2021.
 
 \bibitem{Devlin2019BERT}
 J. Devlin, M.-W. Chang, K. Lee, dan K. Toutanova,
 ``BERT: Pre-training of deep bidirectional transformers for language
-understanding,'' dalam \emph{Proc. NAACL-HLT}, 2019, hlm. 4171--4186.
+understanding,'' dalam \emph{Proc. NAACL-HLT}, 2019, hlm. 4171-4186.
 
 \bibitem{Caruana1997MTL}
 R. Caruana, ``Multitask learning,'' \emph{Machine Learning}, vol. 28,
-hlm. 41--75, 1997.
+hlm. 41-75, 1997.
 
 \bibitem{McInnes2018UMAP}
 L. McInnes, J. Healy, dan J. Melville,
@@ -568,7 +568,7 @@ reduction,'' \emph{arXiv preprint} arXiv:1802.03426, 2018.
 \bibitem{Wolf2020Transformers}
 T. Wolf \emph{et al.},
 ``Transformers: State-of-the-art natural language processing,'' dalam
-\emph{Proc. EMNLP: System Demonstrations}, 2020, hlm. 38--45.
+\emph{Proc. EMNLP: System Demonstrations}, 2020, hlm. 38-45.
 
 \bibitem{Paszke2019PyTorch}
 A. Paszke \emph{et al.},
@@ -578,7 +578,7 @@ dalam \emph{Proc. NeurIPS}, 2019.
 \bibitem{Pedregosa2011Sklearn}
 F. Pedregosa \emph{et al.},
 ``Scikit-learn: Machine learning in Python,''
-\emph{J. Mach. Learn. Res.}, vol. 12, hlm. 2825--2830, 2011.
+\emph{J. Mach. Learn. Res.}, vol. 12, hlm. 2825-2830, 2011.
 
 \bibitem{Loshchilov2019AdamW}
 I. Loshchilov dan F. Hutter,
